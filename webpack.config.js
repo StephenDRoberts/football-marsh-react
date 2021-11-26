@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { getIfUtils, removeEmpty } = require('webpack-config-utils');
+const webpack = require('webpack');
 
 const env = process.env.APP_DEBUG === 'true' ? 'development' : 'production';
 const { ifDevelopment } = getIfUtils(env);
@@ -44,11 +45,15 @@ module.exports = {
     ]
   },
   resolve: {
+    alias: {
+      'react-dom': '@hot-loader/react-dom'
+    },
     extensions: ['*', '.js', '.jsx']
   },
-  plugins: [
+  plugins: removeEmpty([
     new HtmlWebpackPlugin({
       template: path.join(__dirname, "src", "index.html"),
     }),
-  ],
+    ifDevelopment(new webpack.HotModuleReplacementPlugin()),
+  ]),
 }

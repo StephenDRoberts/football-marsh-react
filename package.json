@@ -11,14 +11,22 @@
   "author": "Stephen Roberts",
   "license": "ISC",
   "dependencies": {
+    "@react-three/drei": "^7.22.9",
+    "@react-three/fiber": "^7.0.20",
+    "@react-three/postprocessing": "^2.0.5",
+    "@types/three": "^0.134.0",
+    "css-loader": "^6.5.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "style-loader": "^3.3.1",
+    "three": "^0.135.0",
     "webpack-config-utils": "^2.3.1"
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",
     "@babel/preset-env": "^7.16.4",
     "@babel/preset-react": "^7.16.0",
+    "@hot-loader/react-dom": "^17.0.1",
     "babel-loader": "^8.2.3",
     "html-webpack-plugin": "^5.5.0",
     "react-hot-loader": "^4.13.0",
