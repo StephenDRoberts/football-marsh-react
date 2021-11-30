@@ -18,6 +18,18 @@ const Hoardings = ({ pitchSize, count = 100, temp = new THREE.Object3D()}) => {
 
   const sizesWithHoardings = {...pitchSize, hoardingsSize: HOARDING_SIZE }
 
+  const handleOnHoardingsClick = () => {
+    window.open('https://m.skybet.com/', '_blank').focus();
+  }
+
+  const handlePointerLeave = () => {
+    document.body.style.cursor = 'auto'
+  }
+
+  const handlePointerOver = () => {
+    document.body.style.cursor = 'pointer'
+  }
+
   useEffect(() => {
     for (let i = 0; i < count; i++) {
       const column = i % 5
@@ -48,6 +60,9 @@ const Hoardings = ({ pitchSize, count = 100, temp = new THREE.Object3D()}) => {
     <instancedMesh
       ref={ref}
       args={[null, null, count]}
+      onClick={handleOnHoardingsClick}
+      onPointerOver={handlePointerOver}
+      onPointerLeave={handlePointerLeave}
     >
       <cylinderGeometry
         args={[ HOARDING_SIZE, HOARDING_SIZE, PITCH_LENGTH - 10, 3, 6, true]}

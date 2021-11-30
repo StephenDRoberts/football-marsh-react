@@ -24,12 +24,10 @@ const Pitches = ({ pitchSize, count = 100, temp = new THREE.Object3D() }) => {
         - coordinates.pitch.pitchZ,
         coordinates.pitch.pitchY,
       )
-      console.log(temp.position)
       temp.updateMatrix()
 
       const id = i
       ref.current.setMatrixAt(id, temp.matrix)
-      console.log(ref.current)
     }
     // Update the instance
     ref.current.instanceMatrix.needsUpdate = true
