@@ -4,7 +4,7 @@ const Floor = () => {
   return(
     <mesh
     rotation={[- Math.PI * 0.5, 0, 0]}>
-      <boxGeometry args={[10000,10000,1]}/>
+      <planeGeometry args={[10000,10000]}/>
       <meshStandardMaterial color={'#193800'}/>
     </mesh>
   )

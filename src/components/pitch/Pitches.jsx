@@ -3,10 +3,10 @@ import { generatePitchCoordinates } from '../../utils/coordinates';
 import Pitch from './Pitch';
 import * as THREE from 'three';
 import { useFrame } from '@react-three/fiber';
-import { Sizes } from '../../utils/sizes';
 import Hoardings from './Hoardings';
+import TeamLogo from './TeamLogo';
 
-const Pitches = ({ pitchSize, count = 100, temp = new THREE.Object3D() }) => {
+const Pitches = ({ pitchSize, count = 100, temp = new THREE.Object3D(), matrix = new THREE.Matrix4() }) => {
   const ref = useRef()
   let zOffset = 0
   let speed = 0
@@ -25,9 +25,10 @@ const Pitches = ({ pitchSize, count = 100, temp = new THREE.Object3D() }) => {
         coordinates.pitch.pitchY,
       )
       temp.updateMatrix()
-
+      const homeLogoPositions = coordinates.homeLogo
       const id = i
       ref.current.setMatrixAt(id, temp.matrix)
+      ref.current.steve = 'steve'
     }
     // Update the instance
     ref.current.instanceMatrix.needsUpdate = true
@@ -41,9 +42,11 @@ const Pitches = ({ pitchSize, count = 100, temp = new THREE.Object3D() }) => {
 
   const handleClickEvent = (event) => {
     event.preventDefault
-    // console.log(event)
-    // console.log(ref.current)
-    // console.log(ref.current.getMatrixAt(event.instanceId, ref.current.instanceMatrix.array))
+    const intersection = event.intersections[0].object.position
+    console.log(ref.current)
+    console.log(ref.current.getMatrixAt(1, matrix))
+
+    intersection.set(intersection.x, intersection.y + 20, intersection.z)
   }
 
   useFrame((state) => {
@@ -54,7 +57,12 @@ const Pitches = ({ pitchSize, count = 100, temp = new THREE.Object3D() }) => {
     position.set(position.x, position.y, newZPosition)
   })
 
+  // useEffect()
+
+
+
   return (
+    <>
     <instancedMesh
       ref={ref}
       onClick={handleClickEvent}
@@ -65,6 +73,9 @@ const Pitches = ({ pitchSize, count = 100, temp = new THREE.Object3D() }) => {
       <Pitch />
       <Hoardings pitchSize={pitchSize}/>
     </instancedMesh>
+
+      {/*<TeamLogo />*/}
+    </>
   )
 }
 

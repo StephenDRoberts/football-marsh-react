@@ -1,9 +1,13 @@
 
 export const generatePitchCoordinates = (sizes, row, column) => {
-  const coordinates = {pitch: { row, column }, hoardings: {}}
+  const coordinates = {pitch: { row, column }, homeLogo: {}}
   coordinates.pitch.pitchX = sizes.width * (column - 2)
   coordinates.pitch.pitchY = sizes.depth / 2
   coordinates.pitch.pitchZ = sizes.length * (- row)
+
+  coordinates.homeLogo.x = -sizes.width * (column - 1)
+  coordinates.homeLogo.y = sizes.depth + 10 / 2
+  coordinates.homeLogo.z =  (-sizes.length / 4) + (row * - sizes.length)
 
   return coordinates;
 }

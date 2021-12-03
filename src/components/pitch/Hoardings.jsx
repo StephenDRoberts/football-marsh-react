@@ -65,7 +65,7 @@ const Hoardings = ({ pitchSize, count = 100, temp = new THREE.Object3D()}) => {
       onPointerLeave={handlePointerLeave}
     >
       <cylinderGeometry
-        args={[ HOARDING_SIZE, HOARDING_SIZE, PITCH_LENGTH - 10, 3, 6, true]}
+        args={[ HOARDING_SIZE, HOARDING_SIZE, PITCH_LENGTH - 10, 3, 1, true]}
       />
       <meshStandardMaterial map={texture} />
       {/*<meshBasicMaterial wireframe={true} />*/}

@@ -1,5 +1,5 @@
 import { hot } from 'react-hot-loader/root';
-import React, { Suspense, useRef } from 'react';
+import React, { Suspense } from 'react';
 import { Canvas, useThree } from '@react-three/fiber';
 import './index.css';
 import Pitches from './components/pitch/Pitches';
@@ -7,7 +7,6 @@ import { Environment, OrbitControls, Stats } from '@react-three/drei';
 import Floor from './components/Floor';
 import { Sizes } from './utils/sizes';
 import Camera from './components/Camera';
-import Hoardings from './components/pitch/Hoardings';
 
 const App = () => {
   // // useThree gives you access to the R3F state model
