@@ -41,12 +41,34 @@ const Pitches = ({ pitchSize, count = 100, temp = new THREE.Object3D(), matrix =
   }
 
   const handleClickEvent = (event) => {
-    event.preventDefault
+    event.stopPropagation()
     const intersection = event.intersections[0].object.position
-    console.log(ref.current)
-    console.log(ref.current.getMatrixAt(1, matrix))
+    console.log(event.instanceId)
+    ref.current.getMatrixAt(event.instanceId, matrix)
 
-    intersection.set(intersection.x, intersection.y + 20, intersection.z)
+    // let newPosition = new THREE.Vector3();
+    // newPosition.setFromMatrixPosition( matrix );
+    // newPosition.
+    //   matrix.
+
+    let tempObj = new THREE.Object3D()
+
+// in animation loop or anywhere else
+    ref.current.getMatrixAt(event.instanceId, matrix);
+    matrix.decompose(tempObj.position, tempObj.quaternion, tempObj.scale); // now position is in tempObj.position
+console.log(tempObj.position)
+console.log("x", tempObj.position.x)
+    matrix.setPosition(tempObj.position.x, tempObj.position.y, tempObj.position.z + 20 )
+
+    ref.current.setMatrixAt(event.instanceId, matrix)
+    ref.current.instanceMatrix.needsUpdate = true
+
+
+
+    // console.log(ref.current.setMatrixAt(event.instanceId, temp.matrix))
+    // console.log(event)
+// const myObject = ref.current.getMatrixAt(event.instanceId, matrix)
+    // myObject.set(intersection.x, intersection.y + 20, intersection.z)
   }
 
   useFrame((state) => {

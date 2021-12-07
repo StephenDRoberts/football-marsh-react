@@ -29,8 +29,9 @@ const Pitch = () => {
           pitchSize.length,
           pitchSize.depth
         ]}
+        attach={"geometry"}
       />
-      <meshStandardMaterial {...props} />
+      <meshStandardMaterial attach={"material"} {...props} />
   </>
   )
 }
