@@ -42,6 +42,10 @@ module.exports = {
         test: /\.svg$/,
         use: ['@svgr/webpack'],
       },
+      {
+        test: /\.glsl$/,
+        use: ['webpack-glsl-loader']
+      }
     ]
   },
   resolve: {

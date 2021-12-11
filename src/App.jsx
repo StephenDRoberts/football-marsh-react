@@ -9,11 +9,6 @@ import { Sizes } from './utils/sizes';
 import Camera from './components/Camera';
 
 const App = () => {
-  // // useThree gives you access to the R3F state model
-  // const { viewport, camera } = useThree()
-  // // getCurrentViewport is a helper that calculates the size of the viewport
-  // const { width, height } = viewport.getCurrentViewport(camera, [0, 0, -z])
-
   if(!Sizes) return;
   return (
     <Suspense fallback={null}>

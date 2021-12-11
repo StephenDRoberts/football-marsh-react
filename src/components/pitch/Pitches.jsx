@@ -40,35 +40,67 @@ const Pitches = ({ pitchSize, count = 100, temp = new THREE.Object3D(), matrix =
     speed += event.deltaY * 0.05
   }
 
+  const easeInSine = (x) => {
+    return 1 - Math.cos((x * Math.PI) / 2);
+  }
+
+  const easeInElastic = (x) => {
+    const c4 = (2 * Math.PI) / 3;
+
+    return x === 0
+      ? 0
+      : x === 1
+        ? 1
+        : -Math.pow(2, 10 * x - 10) * Math.sin((x * 10 - 10.75) * c4);
+  }
+
   const handleClickEvent = (event) => {
     event.stopPropagation()
-    const intersection = event.intersections[0].object.position
-    console.log(event.instanceId)
-    ref.current.getMatrixAt(event.instanceId, matrix)
-
-    // let newPosition = new THREE.Vector3();
-    // newPosition.setFromMatrixPosition( matrix );
-    // newPosition.
-    //   matrix.
-
+    const instanceId = event.instanceId
+    ref.current.getMatrixAt(instanceId, matrix)
     let tempObj = new THREE.Object3D()
-
-// in animation loop or anywhere else
-    ref.current.getMatrixAt(event.instanceId, matrix);
     matrix.decompose(tempObj.position, tempObj.quaternion, tempObj.scale); // now position is in tempObj.position
-console.log(tempObj.position)
-console.log("x", tempObj.position.x)
-    matrix.setPosition(tempObj.position.x, tempObj.position.y, tempObj.position.z + 20 )
-
-    ref.current.setMatrixAt(event.instanceId, matrix)
-    ref.current.instanceMatrix.needsUpdate = true
 
 
 
-    // console.log(ref.current.setMatrixAt(event.instanceId, temp.matrix))
-    // console.log(event)
-// const myObject = ref.current.getMatrixAt(event.instanceId, matrix)
-    // myObject.set(intersection.x, intersection.y + 20, intersection.z)
+
+
+let timer
+let elapsed = 0
+timer = setInterval((ev) => {
+  elapsed ++
+
+  // const easedOffset =   easeInElastic(elapsed / 10)
+  const easedOffset = -1 * easeInSine(elapsed / 4)
+  // const easedOffset = -1.9 * Math.sin(elapsed / 10)
+
+  matrix.setPosition(tempObj.position.x, tempObj.position.y, tempObj.position.z + easedOffset )
+
+  ref.current.setMatrixAt(instanceId, matrix)
+  ref.current.instanceMatrix.needsUpdate = true
+
+  console.log(ev)
+  if(elapsed ==16 ) {
+    clearInterval(( timer))
+  }
+
+
+
+}, 10)
+    // useFrame(({ clock }) => {
+    //   console.log(clock)
+
+    // })
+
+
+
+
+
+
+    // // in animation loop or anywhere else
+    // ref.current.getMatrixAt(instanceId, matrix);
+
+
   }
 
   useFrame((state) => {
@@ -80,6 +112,9 @@ console.log("x", tempObj.position.x)
   })
 
   // useEffect()
+
+
+
 
 
 
