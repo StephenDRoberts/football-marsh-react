@@ -1,31 +1,21 @@
 import { hot } from 'react-hot-loader/root';
-import React, { Suspense } from 'react';
-import { Canvas, useThree } from '@react-three/fiber';
-import './index.css';
-import Pitches from './components/pitch/Pitches';
-import { Environment, OrbitControls, Stats } from '@react-three/drei';
-import Floor from './components/Floor';
+import React from 'react';
+import { HashRouter, Route, Routes } from 'react-router-dom';
 import { Sizes } from './utils/sizes';
-import Camera from './components/Camera';
+import Marsh from './views/Marsh';
+import SingleGame from './views/SingleGame';
+import './index.css';
+
 
 const App = () => {
   if(!Sizes) return;
   return (
-    <Suspense fallback={null}>
-      <Canvas>
-        <Camera />
-        <Stats showPanel={0} className="stats" />
-        <OrbitControls enableZoom={false}/>
-        {/*<color attach="background" args={"#010101"} />*/}
-        <fog attach="fog" args={['#ffffff', 100, 1500]} />
-        <Pitches pitchSize={Sizes.pitch}/>
-
-        <Floor />
-        <Environment preset="forest" />
-        {/*<ambientLight />*/}
-        <axesHelper args={[50]} position={[0,Sizes.pitch.depth + 1, 0]}/>
-      </Canvas>
-    </Suspense>
+    <HashRouter>
+      <Routes>
+        <Route path={"/"} element={<Marsh />} />
+        <Route path={"/fixtureId"} element={<SingleGame />}/>
+      </Routes>
+    </HashRouter>
   )
 }
 
