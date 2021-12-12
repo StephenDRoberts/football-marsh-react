@@ -4,10 +4,11 @@ import Pitch from './Pitch';
 import * as THREE from 'three';
 import { useFrame } from '@react-three/fiber';
 import Hoardings from './Hoardings';
-import TeamLogo from './TeamLogo';
+import { easeInSine } from '../../utils/easings/functions';
 
-const Pitches = ({ pitchSize, count = 100, temp = new THREE.Object3D(), matrix = new THREE.Matrix4() }) => {
+const Pitches = ({ pitchSize, navigate, count = 100, temp = new THREE.Object3D(), matrix = new THREE.Matrix4() }) => {
   const ref = useRef()
+
   let zOffset = 0
   let speed = 0
 
@@ -25,7 +26,7 @@ const Pitches = ({ pitchSize, count = 100, temp = new THREE.Object3D(), matrix =
         coordinates.pitch.pitchY,
       )
       temp.updateMatrix()
-      const homeLogoPositions = coordinates.homeLogo
+
       const id = i
       ref.current.setMatrixAt(id, temp.matrix)
       ref.current.steve = 'steve'
@@ -40,19 +41,7 @@ const Pitches = ({ pitchSize, count = 100, temp = new THREE.Object3D(), matrix =
     speed += event.deltaY * 0.05
   }
 
-  const easeInSine = (x) => {
-    return 1 - Math.cos((x * Math.PI) / 2);
-  }
 
-  const easeInElastic = (x) => {
-    const c4 = (2 * Math.PI) / 3;
-
-    return x === 0
-      ? 0
-      : x === 1
-        ? 1
-        : -Math.pow(2, 10 * x - 10) * Math.sin((x * 10 - 10.75) * c4);
-  }
 
   const handleClickEvent = (event) => {
     event.stopPropagation()
@@ -61,46 +50,25 @@ const Pitches = ({ pitchSize, count = 100, temp = new THREE.Object3D(), matrix =
     let tempObj = new THREE.Object3D()
     matrix.decompose(tempObj.position, tempObj.quaternion, tempObj.scale); // now position is in tempObj.position
 
+    let timer
+    let elapsed = 0
+    timer = setInterval((ev) => {
+      elapsed ++
 
+      // const easedOffset =   easeInElastic(elapsed / 10)
+      const easedOffset = -0.8 * easeInSine(elapsed / 4)
+      // const easedOffset = -1.9 * Math.sin(elapsed / 10)
 
+      matrix.setPosition(tempObj.position.x, tempObj.position.y, tempObj.position.z + easedOffset )
 
+      ref.current.setMatrixAt(instanceId, matrix)
+      ref.current.instanceMatrix.needsUpdate = true
 
-let timer
-let elapsed = 0
-timer = setInterval((ev) => {
-  elapsed ++
-
-  // const easedOffset =   easeInElastic(elapsed / 10)
-  const easedOffset = -1 * easeInSine(elapsed / 4)
-  // const easedOffset = -1.9 * Math.sin(elapsed / 10)
-
-  matrix.setPosition(tempObj.position.x, tempObj.position.y, tempObj.position.z + easedOffset )
-
-  ref.current.setMatrixAt(instanceId, matrix)
-  ref.current.instanceMatrix.needsUpdate = true
-
-  console.log(ev)
-  if(elapsed ==16 ) {
-    clearInterval(( timer))
-  }
-
-
-
-}, 10)
-    // useFrame(({ clock }) => {
-    //   console.log(clock)
-
-    // })
-
-
-
-
-
-
-    // // in animation loop or anywhere else
-    // ref.current.getMatrixAt(instanceId, matrix);
-
-
+      if(elapsed ==16 ) {
+        clearInterval(( timer))
+        setTimeout(() => navigate("/fixtureId"), 300)
+      }
+    }, 10)
   }
 
   useFrame((state) => {
@@ -111,27 +79,18 @@ timer = setInterval((ev) => {
     position.set(position.x, position.y, newZPosition)
   })
 
-  // useEffect()
-
-
-
-
-
-
   return (
     <>
-    <instancedMesh
-      ref={ref}
-      onClick={handleClickEvent}
-      onWheel={handleWheelEvent}
-      args={[null, null, count]}
-      rotation={[-Math.PI * 0.5, 0, 0]}
-    >
-      <Pitch />
-      <Hoardings pitchSize={pitchSize}/>
-    </instancedMesh>
-
-      {/*<TeamLogo />*/}
+      <instancedMesh
+        ref={ref}
+        onClick={handleClickEvent}
+        onWheel={handleWheelEvent}
+        args={[null, null, count]}
+        rotation={[-Math.PI * 0.5, 0, 0]}
+      >
+        <Pitch />
+        <Hoardings pitchSize={pitchSize}/>
+      </instancedMesh>
     </>
   )
 }
