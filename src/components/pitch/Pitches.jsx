@@ -83,7 +83,7 @@ const Pitches = ({ pitchSize, navigate, count = 100, temp = new THREE.Object3D()
     <>
       <instancedMesh
         ref={ref}
-        onClick={handleClickEvent}
+        onDoubleClick={handleClickEvent}
         onWheel={handleWheelEvent}
         args={[null, null, count]}
         rotation={[-Math.PI * 0.5, 0, 0]}

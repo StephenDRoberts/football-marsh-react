@@ -33,8 +33,6 @@ const Pitch = () => {
   //   uTexture: { value: image },
   // }
 
-
-
   return(
     <>
       <boxGeometry
