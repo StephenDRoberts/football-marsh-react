@@ -5,17 +5,19 @@ import { Sizes } from './utils/sizes';
 import Marsh from './views/Marsh';
 import SingleGame from './views/SingleGame';
 import './index.css';
-
+import { AnimatePresence } from 'framer-motion';
+import { useLocation } from 'react-router-dom';
 
 const App = () => {
+  const location = useLocation()
   if(!Sizes) return;
   return (
-    <HashRouter>
-      <Routes>
-        <Route path={"/"} element={<Marsh />} />
-        <Route path={"/fixtureId"} element={<SingleGame />}/>
+    <AnimatePresence exitBeforeEnter>
+      <Routes location={location} key={location.pathname}>
+          <Route path={"/"} element={<Marsh />} />
+          <Route path={"/fixtureId"} element={<SingleGame />}/>
       </Routes>
-    </HashRouter>
+    </AnimatePresence>
   )
 }
 
