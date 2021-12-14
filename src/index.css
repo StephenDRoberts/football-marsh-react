@@ -6,6 +6,7 @@ body,
     width: 100%;
     height: 100%;
     overflow: hidden;
+    font-family: Arial;
 }
 
 .loader  {
@@ -17,5 +18,16 @@ body,
     overflow: auto;
     /*background-color: darkgreen;*/
     /*border: 10px solid red;*/
+}
+
+.link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    /*width: 100vw;*/
+    /*height: 100vh;*/
+    /*overflow: auto;*/
+    z-index: 500;
+    color: white
 }
 

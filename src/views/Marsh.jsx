@@ -53,7 +53,7 @@ const Marsh = () => {
     >
       <Suspense fallback={null}>
       <Canvas>
-        <Camera />
+        <Camera position={[0, 160, 300]}/>
         <Stats showPanel={0} className="stats" />
         <OrbitControls enableZoom={false}/>
         {/*<color attach="background" args={"#010101"} />*/}
