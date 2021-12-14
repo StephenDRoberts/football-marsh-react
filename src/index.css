@@ -8,12 +8,14 @@ body,
     overflow: hidden;
 }
 
-.scroll-area {
+.loader  {
     position: absolute;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
     overflow: auto;
-    border: 10px solid red;
+    /*background-color: darkgreen;*/
+    /*border: 10px solid red;*/
 }
+
