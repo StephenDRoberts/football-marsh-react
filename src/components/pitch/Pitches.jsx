@@ -3,7 +3,7 @@ import { generatePitchCoordinates } from '../../utils/coordinates';
 import Pitch from './Pitch';
 import * as THREE from 'three';
 import { useFrame } from '@react-three/fiber';
-import Hoardings from './Hoardings';
+import Hoardings from '../hoardings/Hoardings';
 import { easeInSine } from '../../utils/easings/functions';
 
 const Pitches = ({ pitchSize, navigate, count = 100, temp = new THREE.Object3D(), matrix = new THREE.Matrix4() }) => {

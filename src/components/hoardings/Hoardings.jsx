@@ -6,15 +6,13 @@ import { generateHoardingCoordinates } from '../../utils/coordinates';
 import * as THREE from 'three';
 import { TextureLoader } from 'three';
 import { useLoader } from '@react-three/fiber';
+import Hoarding from './Hoarding';
 
 const HOARDING_SIZE = 3;
 const PITCH_LENGTH = 130.4;
 
 const Hoardings = ({ pitchSize, count = 100, temp = new THREE.Object3D()}) => {
   const ref = useRef()
-  const texture = useLoader(TextureLoader, hoardingsImage)
-  texture.wrapT = THREE.RepeatWrapping
-  texture.repeat.set(1,4)
 
   const sizesWithHoardings = {...pitchSize, hoardingsSize: HOARDING_SIZE }
 
@@ -64,11 +62,7 @@ const Hoardings = ({ pitchSize, count = 100, temp = new THREE.Object3D()}) => {
       onPointerOver={handlePointerOver}
       onPointerLeave={handlePointerLeave}
     >
-      <cylinderGeometry
-        args={[ HOARDING_SIZE, HOARDING_SIZE, PITCH_LENGTH - 10, 3, 1, true]}
-      />
-      <meshStandardMaterial map={texture} />
-      {/*<meshBasicMaterial wireframe={true} />*/}
+      <Hoarding />
     </instancedMesh>
   )
 }
