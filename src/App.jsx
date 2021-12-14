@@ -12,7 +12,7 @@ const App = () => {
   const location = useLocation()
   if(!Sizes) return;
   return (
-    <AnimatePresence exitBeforeEnter>
+    <AnimatePresence exitBeforeEnter initial={false}>
       <Routes location={location} key={location.pathname}>
           <Route path={"/"} element={<Marsh />} />
           <Route path={"/fixtureId"} element={<SingleGame />}/>

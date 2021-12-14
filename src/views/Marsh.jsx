@@ -7,24 +7,49 @@ import Pitches from '../components/pitch/Pitches';
 import { Sizes } from '../utils/sizes';
 import Floor from '../components/Floor';
 import { useNavigate } from 'react-router-dom'
-import { motion } from 'framer-motion'
+import { motion, useTransform } from 'framer-motion';
 
 const Marsh = () => {
   // useNavigate needs to be setup from a main route component
   // I couldnt get it to work with a child of a connected component
   let navigate = useNavigate()
 
+  const transition = {
+    duration: 0.6,
+    ease: [0.43, 0.13, 0.23, 0.9]
+  }
+
   const handleNavigate = (location) => {
     navigate(location)
+  }
+
+  const slidingPage = {
+    initial: {
+      opacity: 0
+      // width: 0
+    },
+    animate: {
+      opacity: 1
+      // width: '100vw'
+    },
+    exit: {
+      opacity: 0
+      // width: 0
+    },
+    transition : {
+      duration: 0.6,
+      ease: [0.43, 0.13, 0.23, 0.9]
+    }
   }
 
   if(!Sizes) return;
   return (
     <motion.div
       className={'loader'}
-      initial={{opacity: 0}}
-      animate={{opacity: 1}}
-      exit={{opacity: 0}}
+      initial='initial'
+      animate='animate'
+      exit='exit'
+      variants={slidingPage}
     >
       <Suspense fallback={null}>
       <Canvas>
