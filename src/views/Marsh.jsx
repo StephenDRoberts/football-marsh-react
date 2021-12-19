@@ -8,6 +8,7 @@ import { Sizes } from '../utils/sizes';
 import Floor from '../components/surroundings/Floor';
 import { useNavigate } from 'react-router-dom'
 import { motion, useTransform } from 'framer-motion';
+import Trees from '../components/surroundings/Trees';
 
 const Marsh = () => {
   // useNavigate needs to be setup from a main route component
@@ -55,13 +56,14 @@ const Marsh = () => {
       <Canvas>
         <Camera position={[0, 160, 300]}/>
         <Stats showPanel={0} className="stats" />
-        <OrbitControls enableZoom={true}/>
+        <OrbitControls enableZoom={false}/>
         {/*<color attach="background" args={"#010101"} />*/}
         <fog attach="fog" args={['#ffffff', 100, 1500]} />
         <Pitches
           navigate={handleNavigate}
           pitchSize={Sizes.pitch}
         />
+        <Trees />
         <Floor />
         <Environment preset="forest" />
         {/*<ambientLight />*/}

@@ -10,7 +10,6 @@ const Floor = () => {
         <planeGeometry args={[10000,10000]}/>
         <meshStandardMaterial color={'#193800'}/>
       </mesh>
-      <Trees />
     </>
   )
 }
