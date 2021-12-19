@@ -5,10 +5,10 @@ import * as THREE from 'three';
 import { useFrame } from '@react-three/fiber';
 import Hoardings from '../hoardings/Hoardings';
 import { easeInSine } from '../../utils/easings/functions';
+import { useWheelEvent } from '../../hooks/useWheelEvent';
 
 const Pitches = ({ pitchSize, navigate, count = 100, temp = new THREE.Object3D(), matrix = new THREE.Matrix4() }) => {
   const ref = useRef()
-
   let zOffset = 0
   let speed = 0
 
@@ -38,10 +38,12 @@ const Pitches = ({ pitchSize, navigate, count = 100, temp = new THREE.Object3D()
 
   const handleWheelEvent = (event) => {
     event.preventDefault
+    // TODO - look into changing to scroll event?
+    // https://developer.mozilla.org/en-US/docs/Web/API/Document/wheel_event
     speed += event.deltaY * 0.05
   }
 
-
+  useWheelEvent(handleWheelEvent)
 
   const handleClickEvent = (event) => {
     event.stopPropagation()
@@ -71,7 +73,7 @@ const Pitches = ({ pitchSize, navigate, count = 100, temp = new THREE.Object3D()
     }, 10)
   }
 
-  useFrame((state) => {
+  useFrame(() => {
     const { position } = ref.current
     zOffset += speed
     speed *= 0.90
@@ -79,12 +81,12 @@ const Pitches = ({ pitchSize, navigate, count = 100, temp = new THREE.Object3D()
     position.set(position.x, position.y, newZPosition)
   })
 
+
   return (
     <>
       <instancedMesh
         ref={ref}
         onDoubleClick={handleClickEvent}
-        onWheel={handleWheelEvent}
         args={[null, null, count]}
         rotation={[-Math.PI * 0.5, 0, 0]}
       >
