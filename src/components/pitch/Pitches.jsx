@@ -38,6 +38,8 @@ const Pitches = ({ pitchSize, navigate, count = 100, temp = new THREE.Object3D()
 
   const handleWheelEvent = (event) => {
     event.preventDefault
+    // TODO - look into changing to scroll event?
+    // https://developer.mozilla.org/en-US/docs/Web/API/Document/wheel_event
     speed += event.deltaY * 0.05
   }
 
