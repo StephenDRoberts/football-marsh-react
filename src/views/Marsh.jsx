@@ -5,9 +5,10 @@ import Camera from '../components/Camera';
 import { Environment, OrbitControls, Stats } from '@react-three/drei';
 import Pitches from '../components/pitch/Pitches';
 import { Sizes } from '../utils/sizes';
-import Floor from '../components/Floor';
+import Floor from '../components/surroundings/Floor';
 import { useNavigate } from 'react-router-dom'
 import { motion, useTransform } from 'framer-motion';
+import Trees from '../components/surroundings/Trees';
 
 const Marsh = () => {
   // useNavigate needs to be setup from a main route component
@@ -62,6 +63,7 @@ const Marsh = () => {
           navigate={handleNavigate}
           pitchSize={Sizes.pitch}
         />
+        <Trees />
         <Floor />
         <Environment preset="forest" />
         {/*<ambientLight />*/}

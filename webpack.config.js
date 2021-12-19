@@ -8,9 +8,9 @@ const { ifDevelopment } = getIfUtils(env);
 
 module.exports = {
   mode: 'development',
-  entry: path.join(__dirname, "src", "index.js"),
+  entry: path.join(__dirname, 'src', 'index.js'),
   output: {
-    path:path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, 'dist'),
   },
   module: {
     rules: [
@@ -32,11 +32,11 @@ module.exports = {
       },
       {
         test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
+        use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.(png|jp(e*)g|svg|gif)$/,
-        use: ['file-loader'],
+        use: ['url-loader'],
       },
       {
         test: /\.svg$/,
@@ -44,20 +44,27 @@ module.exports = {
       },
       {
         test: /\.glsl$/,
-        use: ['webpack-glsl-loader']
-      }
-    ]
+        use: ['webpack-glsl-loader'],
+      },
+      {
+        test: /\.(glb|gltf)$/,
+        use:
+          [{
+            loader: 'url-loader',
+          }],
+      },
+    ],
   },
   resolve: {
     alias: {
-      'react-dom': '@hot-loader/react-dom'
+      'react-dom': '@hot-loader/react-dom',
     },
-    extensions: ['*', '.js', '.jsx']
+    extensions: ['*', '.js', '.jsx'],
   },
   plugins: removeEmpty([
     new HtmlWebpackPlugin({
-      template: path.join(__dirname, "src", "index.html"),
+      template: path.join(__dirname, 'src', 'index.html'),
     }),
     ifDevelopment(new webpack.HotModuleReplacementPlugin()),
   ]),
-}
+};

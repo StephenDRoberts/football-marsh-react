@@ -4,7 +4,7 @@ import * as THREE from 'three';
 import pitchImage from '../../../static/assets/pitch/pitch2.jpg'
 import fragment from './shaders/fragment.glsl'
 import vertex from './shaders/vertex.glsl'
-import { useTexture } from '@react-three/drei';
+import { Html, useTexture } from '@react-three/drei';
 
 const DEFAULT_PITCH_SIZE = {
     length: 130.4,
