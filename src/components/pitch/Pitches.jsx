@@ -5,13 +5,15 @@ import * as THREE from 'three';
 import { useFrame } from '@react-three/fiber';
 import Hoardings from '../hoardings/Hoardings';
 import { easeInSine } from '../../utils/easings/functions';
+import { useScroll } from '@react-three/drei';
 
-const Pitches = ({ pitchSize, navigate, count = 100, temp = new THREE.Object3D(), matrix = new THREE.Matrix4() }) => {
+const Pitches = ({ pitchSize, zOffset, navigate, count = 100, temp = new THREE.Object3D(), matrix = new THREE.Matrix4() }) => {
   const ref = useRef()
+  // const scroll = useScroll()
 
-  let zOffset = 0
+  // let zOffset = 0
   let speed = 0
-
+console.log(zOffset)
   useEffect(() => {
     for (let i = 0; i < count; i++) {
       const column = i % 5
@@ -71,7 +73,7 @@ const Pitches = ({ pitchSize, navigate, count = 100, temp = new THREE.Object3D()
     }, 10)
   }
 
-  useFrame((state) => {
+  useFrame(() => {
     const { position } = ref.current
     zOffset += speed
     speed *= 0.90
