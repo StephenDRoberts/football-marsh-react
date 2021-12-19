@@ -6,7 +6,7 @@ import Camera from '../components/Camera';
 import { Environment, OrbitControls, Stats } from '@react-three/drei';
 import Pitches from '../components/pitch/Pitches';
 import { Sizes } from '../utils/sizes';
-import Floor from '../components/Floor';
+import Floor from '../components/surroundings/Floor';
 import SinglePitch from '../components/SinglePitch';
 
 const SingleGame = () => {

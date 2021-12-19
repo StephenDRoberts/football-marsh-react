@@ -5,7 +5,7 @@ import Camera from '../components/Camera';
 import { Environment, OrbitControls, Stats } from '@react-three/drei';
 import Pitches from '../components/pitch/Pitches';
 import { Sizes } from '../utils/sizes';
-import Floor from '../components/Floor';
+import Floor from '../components/surroundings/Floor';
 import { useNavigate } from 'react-router-dom'
 import { motion, useTransform } from 'framer-motion';
 
@@ -55,7 +55,7 @@ const Marsh = () => {
       <Canvas>
         <Camera position={[0, 160, 300]}/>
         <Stats showPanel={0} className="stats" />
-        <OrbitControls enableZoom={false}/>
+        <OrbitControls enableZoom={true}/>
         {/*<color attach="background" args={"#010101"} />*/}
         <fog attach="fog" args={['#ffffff', 100, 1500]} />
         <Pitches
