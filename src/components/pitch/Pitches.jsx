@@ -29,7 +29,7 @@ const Pitches = ({ pitchSize, navigate, count = 100, temp = new THREE.Object3D()
 
       const id = i
       ref.current.setMatrixAt(id, temp.matrix)
-      ref.current.steve = 'steve'
+      ref.current.steveId = i
     }
     // Update the instance
     ref.current.instanceMatrix.needsUpdate = true
@@ -66,7 +66,7 @@ const Pitches = ({ pitchSize, navigate, count = 100, temp = new THREE.Object3D()
       ref.current.setMatrixAt(instanceId, matrix)
       ref.current.instanceMatrix.needsUpdate = true
 
-      if(elapsed ==16 ) {
+      if(elapsed == 16 ) {
         clearInterval(( timer))
         setTimeout(() => navigate("/fixtureId"), 300)
       }
@@ -87,6 +87,7 @@ const Pitches = ({ pitchSize, navigate, count = 100, temp = new THREE.Object3D()
       <instancedMesh
         ref={ref}
         onDoubleClick={handleClickEvent}
+        onClick={(ev) => console.log(ev)}
         args={[null, null, count]}
         rotation={[-Math.PI * 0.5, 0, 0]}
       >

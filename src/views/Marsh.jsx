@@ -59,14 +59,10 @@ const Marsh = () => {
         <OrbitControls enableZoom={false}/>
         {/*<color attach="background" args={"#010101"} />*/}
         <fog attach="fog" args={['#ffffff', 100, 1500]} />
-        {/*<TrackballControls >*/}
           <Pitches
             navigate={handleNavigate}
             pitchSize={Sizes.pitch}
           />
-        <ScrollControls />
-        {/*</TrackballControls>*/}
-
         <Trees />
         <Floor />
         <Environment preset="forest" />

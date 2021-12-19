@@ -46,8 +46,8 @@ const Pitch = () => {
       />
       {/*<shaderMaterial uniforms={uniforms} fragmentShader={fragment} vertexShader={vertex} />*/}
       <meshStandardMaterial attach={"material"} {...props} />
-      {/*<TeamLogo homeOrAway={'home'} teamName={"Everton"}/>*/}
-      {/*<TeamLogo homeOrAway={'away'} teamNAme={"Arsenal"}/>*/}
+      <TeamLogo homeOrAway={'home'} teamName={"Everton"}/>
+      <TeamLogo homeOrAway={'away'} teamName={"Arsenal"}/>
   </>
   )
 }

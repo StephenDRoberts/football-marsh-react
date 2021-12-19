@@ -11,10 +11,12 @@ const TeamLogo = ({ teamName, x, y, z }) => {
   // logo.position.set(x, y, z)
 console.log(teamName)
   return (
-    <>
-      <planeGeometry />
+    <instancedMesh
+      args={[null, null, 100]}
+    >
+      <planeGeometry args={[10,10]}/>
       <meshBasicMaterial wireframe={true}/>
-    </>
+    </instancedMesh>
   )
 }
 
