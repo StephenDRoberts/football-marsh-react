@@ -12,8 +12,8 @@ const TeamLogo = ({ teamName, x, y, z }) => {
 console.log(teamName)
   return (
     <>
-      <sprite />
-      <spriteMaterial />
+      <planeGeometry />
+      <meshBasicMaterial wireframe={true}/>
     </>
   )
 }

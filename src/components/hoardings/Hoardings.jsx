@@ -1,11 +1,6 @@
 import React, { useEffect, useRef } from 'react';
-import { useTexture } from '@react-three/drei';
-import hoardingsImage from '../../../static/assets/logos/skybet-rebrand-test.png';
-// import hoardingsImage from '../../../static/assets/logos/Sky_Bet_SECONDARY_RGB_flipped-test.png';
 import { generateHoardingCoordinates } from '../../utils/coordinates';
 import * as THREE from 'three';
-import { TextureLoader } from 'three';
-import { useLoader } from '@react-three/fiber';
 import Hoarding from './Hoarding';
 
 const HOARDING_SIZE = 3;

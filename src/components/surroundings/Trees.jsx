@@ -3,6 +3,7 @@ import * as THREE from 'three';
 import { useGLTF } from '@react-three/drei';
 import treeModel from '../../../static/assets/models/tree2.gltf'
 import { useFrame } from '@react-three/fiber';
+import { useWheelEvent } from '../../hooks/useWheelEvent';
 
 const treeScale = [5,5,5]
 
@@ -53,6 +54,8 @@ const Trees = ({ count= 1000, temp = new THREE.Object3D, matrix = new THREE.Matr
     event.preventDefault
     speed += event.deltaY * 0.05
   }
+
+  useWheelEvent(handleWheelEvent)
 
   useFrame((state) => {
     const { position: position1 } = ref1.current
