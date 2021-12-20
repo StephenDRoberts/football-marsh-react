@@ -2,10 +2,11 @@ import React, { useEffect, useRef } from 'react';
 import { generatePitchCoordinates } from '../../utils/coordinates';
 import Pitch from './Pitch';
 import * as THREE from 'three';
-import { useFrame } from '@react-three/fiber';
+import { useFrame, useThree } from '@react-three/fiber';
 import Hoardings from '../hoardings/Hoardings';
 import { easeInSine } from '../../utils/easings/functions';
 import { useWheelEvent } from '../../hooks/useWheelEvent';
+import TeamLogos from './TeamLogos';
 
 const Pitches = ({ pitchSize, navigate, count = 100, temp = new THREE.Object3D(), matrix = new THREE.Matrix4() }) => {
   const ref = useRef()
@@ -92,7 +93,10 @@ const Pitches = ({ pitchSize, navigate, count = 100, temp = new THREE.Object3D()
         rotation={[-Math.PI * 0.5, 0, 0]}
       >
         <Pitch />
-        <Hoardings pitchSize={pitchSize}/>
+        <Hoardings pitchSize={pitchSize} />
+        <TeamLogos pitchSize={pitchSize} />
+        {/*<TeamLogo homeOrAway={'home'} teamName={"Everton"}/>*/}
+        {/*<TeamLogo homeOrAway={'away'} teamName={"Arsenal"}/>*/}
       </instancedMesh>
     </>
   )

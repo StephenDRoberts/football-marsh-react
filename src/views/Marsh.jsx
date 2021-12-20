@@ -1,6 +1,6 @@
 import { hot } from 'react-hot-loader/root';
 import React, { Suspense } from 'react';
-import { Canvas } from '@react-three/fiber';
+import { Canvas, useThree } from '@react-three/fiber';
 import Camera from '../components/Camera';
 import { Environment, OrbitControls, ScrollControls, Stats, TrackballControls } from '@react-three/drei';
 import Pitches from '../components/pitch/Pitches';

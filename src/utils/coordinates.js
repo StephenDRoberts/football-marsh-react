@@ -20,3 +20,19 @@ export const generateHoardingCoordinates = (sizes, row, column) => {
 
   return coordinates;
 }
+
+export const generateTeamLogoCoordinates = ({pitchSize, row, column, home}) => {
+  const coordinates = {teamLogo: {}}
+  coordinates.teamLogo.x =
+    home == 1 ?
+       - pitchSize.width * (column - 3)  - pitchSize.width / 2 - 17.5 :
+      pitchSize.width * (column - 2)  + pitchSize.width / 2 - 17.5
+
+  coordinates.teamLogo.y = pitchSize.depth + 0.5
+  coordinates.teamLogo.z =
+    home == 1 ?
+      pitchSize.length * (- row) - pitchSize.length / 2 + 20 :
+      pitchSize.length * (- row) + pitchSize.length / 2 - 20
+
+  return coordinates;
+}
