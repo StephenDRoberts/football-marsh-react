@@ -1,6 +1,6 @@
 import { hot } from 'react-hot-loader/root';
 import React, { Suspense } from 'react';
-import { Canvas } from '@react-three/fiber';
+import { Canvas, useThree } from '@react-three/fiber';
 import Camera from '../components/Camera';
 import { Environment, OrbitControls, ScrollControls, Stats, TrackballControls } from '@react-three/drei';
 import Pitches from '../components/pitch/Pitches';
@@ -59,14 +59,10 @@ const Marsh = () => {
         <OrbitControls enableZoom={false}/>
         {/*<color attach="background" args={"#010101"} />*/}
         <fog attach="fog" args={['#ffffff', 100, 1500]} />
-        {/*<TrackballControls >*/}
           <Pitches
             navigate={handleNavigate}
             pitchSize={Sizes.pitch}
           />
-        <ScrollControls />
-        {/*</TrackballControls>*/}
-
         <Trees />
         <Floor />
         <Environment preset="forest" />

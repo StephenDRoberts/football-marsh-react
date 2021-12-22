@@ -5,7 +5,7 @@ import pitchImage from '../../../static/assets/pitch/pitch2.jpg'
 import fragment from './shaders/fragment.glsl'
 import vertex from './shaders/vertex.glsl'
 import { Html, useTexture } from '@react-three/drei';
-import TeamLogo from './TeamLogo';
+import TeamLogo from './TeamLogos';
 
 const DEFAULT_PITCH_SIZE = {
     length: 130.4,
@@ -46,8 +46,6 @@ const Pitch = () => {
       />
       {/*<shaderMaterial uniforms={uniforms} fragmentShader={fragment} vertexShader={vertex} />*/}
       <meshStandardMaterial attach={"material"} {...props} />
-      {/*<TeamLogo homeOrAway={'home'} teamName={"Everton"}/>*/}
-      {/*<TeamLogo homeOrAway={'away'} teamNAme={"Arsenal"}/>*/}
   </>
   )
 }

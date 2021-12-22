@@ -27,6 +27,7 @@ const Trees = ({ count= 1000, temp = new THREE.Object3D, matrix = new THREE.Matr
     for(let i = 0; i< count; i++) {
       const randomX = Math.random() - 0.5
       const randomY = Math.random()
+      const randomRotation = Math.random()
       const x = randomX < 0 ?  -45 + randomX * 90 * 2 : 45 + randomX * 90 * 2
       const y = - randomY * 130.4 / 5 * 2 * 10 + 45
 
@@ -35,6 +36,10 @@ const Trees = ({ count= 1000, temp = new THREE.Object3D, matrix = new THREE.Matr
         y,
         -3.6
       )
+      temp.rotation.set(
+        0,0, Math.PI * randomRotation
+      )
+
       temp.updateMatrix()
       const id = i
       ref1.current.setMatrixAt(id, temp.matrix)
