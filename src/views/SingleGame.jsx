@@ -37,7 +37,7 @@ const SingleGame = () => {
           <Floor />
           <Environment preset="forest" />
           {/*<ambientLight />*/}
-          <axesHelper args={[25]} position={[0,Sizes.pitch.depth + 1, 0]}/>
+          {/*<axesHelper args={[25]} position={[0,Sizes.pitch.depth + 1, 0]}/>*/}
         </Canvas>
       </Suspense>
     </motion.div>

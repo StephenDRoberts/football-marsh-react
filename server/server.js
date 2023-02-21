@@ -1,4 +1,4 @@
-const webSocketsServerPort = 8000;
+const webSocketsServerPort = 8001;
 const webSocketServer = require('websocket').server;
 const http = require('http');
 const { v4: uuidv4 } = require('uuid');

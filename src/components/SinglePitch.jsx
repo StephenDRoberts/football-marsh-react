@@ -17,12 +17,12 @@ const SinglePitch = ({ pitchSize }) => {
       <mesh rotation={[-Math.PI * 0.5, 0, 0]}>
         <Pitch />
       </mesh>
-      {/*<mesh*/}
-      {/*  rotation={[-Math.PI * 0.5, 0, 0]}*/}
-      {/*  position={[hoardings.x, hoardings.y, hoardings.z]}*/}
-      {/*>*/}
-        {/*<Hoarding />*/}
-      {/*</mesh>*/}
+      <mesh
+        rotation={[-Math.PI * 0.5, 0, 0]}
+        position={[hoardings.x, hoardings.y, hoardings.z]}
+      >
+        <Hoarding />
+      </mesh>
     </>
 
 )

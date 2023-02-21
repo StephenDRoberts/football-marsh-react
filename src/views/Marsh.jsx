@@ -67,7 +67,7 @@ const Marsh = () => {
         <Floor />
         <Environment preset="forest" />
         {/*<ambientLight />*/}
-        <axesHelper args={[50]} position={[0,Sizes.pitch.depth + 1, 0]}/>
+        {/*<axesHelper args={[50]} position={[0,Sizes.pitch.depth + 1, 0]}/>*/}
       </Canvas>
     </Suspense>
     </motion.div>

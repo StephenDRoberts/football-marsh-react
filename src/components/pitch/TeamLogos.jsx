@@ -1,38 +1,22 @@
-import React, { useEffect, useRef } from 'react';
-import * as THREE from 'three';
-import { generateTeamLogoCoordinates } from '../../utils/coordinates';
+import React from 'react';
+import { Html } from '@react-three/drei';
 
-const TeamLogos = ({ pitchSize, count = 200, temp = new THREE.Object3D(), matrix = new THREE.Matrix4() }) => {
-  const ref = useRef();
+const TeamLogos = ({ fixtureId, teamName, badge, position }) => {
 
-  useEffect(() => {
-    for (let i = 0; i < count; i++) {
-      const column = (i/2) % 5
-      const row = Math.trunc((i/2) / 5)
-      const home = i % 2
-      const coordinates = generateTeamLogoCoordinates({pitchSize, row, column, home})
-
-      temp.position.set(
-        coordinates.teamLogo.x,
-        - coordinates.teamLogo.z,
-        coordinates.teamLogo.y
-      )
-      temp.updateMatrix()
-      ref.current.setMatrixAt(i, temp.matrix)
-    }
-    ref.current.instanceMatrix.needsUpdate = true
-  }, [])
-
+  if(!badge) return null
   return (
-    <instancedMesh
-      ref={ref}
-      args={[null, null, count]}
-      // rotation={[-Math.PI * 0.5,0,0]}
+    <sprite
+      scale={[12,12,12]}
+      position={position}
     >
-      <planeGeometry args={[10,10]}/>
-      <meshStandardMaterial color={'white'}/>
-    </instancedMesh>
+      <spriteMaterial map={badge}/>
+    </sprite>
   )
 }
+
+// <mesh position={position}>
+//    <planeGeometry args={[20,20]}/>
+//    <meshStandardMaterial map={badge}/>
+//  </mesh>
 
 export default TeamLogos;
